@@ -14,6 +14,7 @@ const BASE_URL = 'http://127.0.0.1:8000/studapp/stud/';
 export async function get_all_students() {
     return await axios.get(BASE_URL)
     
+    
 }
 
 // Send post request
