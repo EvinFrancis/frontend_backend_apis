@@ -17,6 +17,7 @@ export async function get_all_students() {
     
 }
 
+
 // Send post request
 // Add new student
 export async function add_new_student(data) {
@@ -26,13 +27,13 @@ export async function add_new_student(data) {
 // ............update daata .............
 //sends get method
 //get one student data frist....base on the id
-export async function get_one_student(id) {
+export async function get_one_student_api(id) {
     return await axios.get(BASE_URL+ `${id}/` )
 }
 
 // send put request
 // update student data
-export async function update_student(id,data) {
+export async function update_student_api(id,data) {
     return await axios.put(BASE_URL+ `${id}/`, data)
 }
 //////////...........................
@@ -41,6 +42,6 @@ export async function update_student(id,data) {
 
 // send delete request
 // delete student data
-export async function delete_student(id) {
+export async function delete_student_api(id) {
     return await axios.delete(BASE_URL+ `${id}/`)
 }

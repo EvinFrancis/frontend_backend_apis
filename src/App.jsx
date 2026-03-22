@@ -10,14 +10,20 @@ import Topnav from './pages/Topnav'
 import Registrations from './pages/Registrations'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [studId, setStudId] = useState()
+
+
 
   return (
    <div>
     <Topnav></Topnav>
     <Home></Home>
-    <Display></Display>
-    <Registrations></Registrations>
+    <Display setStudId={setStudId}></Display>
+{/* setStudId---> used to dispaly_student  where the edit button is displayed used  */}
+
+    <Registrations studId={studId}></Registrations>
+    {/* studId---> used to add new student {registrion} ,
+    that means from whrer the data is shoen and update  */}
     <Footer></Footer>
 
    </div>

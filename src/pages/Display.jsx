@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import bg from '../images/dispaly.jpg'
 import { get_all_students } from '../services/api'
+import {delete_student_api} from '../services/api'
 
-function Display() {
-  const[students,setStudent]=useState();
+function Display({setStudId}) {
+  const[students,setStudent]=useState([]);
 
  async function display_student(){
   let result = await get_all_students()
@@ -15,9 +16,25 @@ function Display() {
 
    
  }
- useEffect(()=>{ 
+
+ useEffect(() => {
+  display_student();
+}, []);
+
+
+ async function delete_student(id) {
+  let result=await delete_student_api(id)
   display_student()
- })
+  
+ }
+ //.............................-------------------
+ function get_stud_data(id){
+  console.log(id)
+  setStudId(id);
+ }
+
+
+ //.............................-------------------
 
 
 
@@ -54,6 +71,15 @@ function Display() {
                   <td>{i.course}</td>
                   <td>{i.college}</td>
                   <td>{i.place}</td>
+                   <td>
+          <a style={styles.editBtn} href='#addstudent' onClick={() => get_stud_data(i.id)}>
+            Edit
+          </a> <br /> <br />
+
+          <a style={styles.deleteBtn}  onClick={() => delete_student(i.id)}>
+            Delete
+          </a> <br/> <br />
+        </td>
                   
                 </tr>
               ))
@@ -96,7 +122,36 @@ const styles = {
   table:{
     width:"100%",
     borderCollapse:"collapse"
-  }
+  },
+  actionCell: {
+  display: "flex",
+  gap: "10px",
+  justifyContent: "center"
+},
+
+editBtn: {
+  background: "linear-gradient(135deg, #28a745, #5cd65c)",
+  color: "white",
+  border: "none",
+  padding: "8px 14px",
+  borderRadius: "6px",
+  cursor: "pointer",
+  fontSize: "14px",
+  transition: "0.3s",
+  boxShadow: "0 3px 8px rgba(0,0,0,0.2)"
+},
+
+deleteBtn: {
+  background: "linear-gradient(135deg, #dc3545, #ff6b6b)",
+  color: "white",
+  border: "none",
+  padding: "8px 14px",
+  borderRadius: "6px",
+  cursor: "pointer",
+  fontSize: "14px",
+  transition: "0.3s",
+  boxShadow: "0 3px 8px rgba(0,0,0,0.2)"
+}
 
 }
 
